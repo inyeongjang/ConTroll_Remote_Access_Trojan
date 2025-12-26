@@ -25,6 +25,7 @@
 import os
 import sys
 import threading
+import shlex
 
 
 _OUT_EXPECTED = ['ONE', 'TWO', 'THREE']
@@ -48,7 +49,7 @@ if 'PYI_THREAD_TEST_CASE' in os.environ:
 # Execute itself in a subprocess.
 else:
     # Differenciate subprocess code.
-    itself = sys.argv[0]
+    itself = shlex.quote(sys.argv[0])
     # Run subprocess.
     try:
         import subprocess
