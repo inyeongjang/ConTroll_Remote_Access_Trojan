@@ -25,6 +25,7 @@
 import os
 import sys
 import threading
+import shlex
 
 
 _OUT_EXPECTED = ['ONE', 'TWO', 'THREE']
@@ -59,7 +60,7 @@ else:
         out, err = proc.communicate()
     except ImportError:
         # Python 2.3 does not have subprocess module.
-        command = 'PYI_THREAD_TEST_CASE=any_string ' + itself
+        command = 'PYI_THREAD_TEST_CASE=any_string ' + shlex.quote(itself)
         pipe = os.popen(command)
         out = pipe.read()
         pipe.close()
